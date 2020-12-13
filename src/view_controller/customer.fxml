@@ -49,10 +49,28 @@
                   </Label>
                </children>
             </HBox>
+            <HBox spacing="10.0" GridPane.rowIndex="1">
+               <children>
+                  <Label prefHeight="24.0" prefWidth="90.0" text="%ID" />
+                  <TextField fx:id="cust_id" disable="true" editable="false" />
+               </children>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+            </HBox>
             <HBox spacing="10.0" GridPane.rowIndex="2">
                <children>
-                  <Label prefHeight="24.0" prefWidth="90.0" text="%name" />
+                  <Label prefHeight="24.0" prefWidth="90.0" text="%Name" />
                   <TextField fx:id="cust_name" />
+               </children>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+            </HBox>
+            <HBox spacing="10.0" GridPane.rowIndex="3">
+               <children>
+                  <Label prefHeight="24.0" prefWidth="90.0" text="%Address" />
+                  <TextField fx:id="cust_address" />
                </children>
                <padding>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -60,26 +78,54 @@
             </HBox>
             <HBox spacing="10.0" GridPane.rowIndex="4">
                <children>
-                  <Label prefHeight="24.0" prefWidth="90.0" text="%postal" />
+                  <Label prefHeight="24.0" prefWidth="90.0" text="%Postal" />
                   <TextField fx:id="cust_postal" />
                </children>
                <padding>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </padding>
             </HBox>
-            <HBox spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="7">
+            <HBox spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <children>
-                  <Label prefHeight="24.0" prefWidth="90.0" text="%last_update_by" />
-                  <TextField fx:id="cust_last_update_by" disable="true" />
+                  <Label prefHeight="24.0" prefWidth="90.0" text="%Phone" />
+                  <TextField fx:id="cust_phone" />
                </children>
                <padding>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </padding>
             </HBox>
-            <HBox spacing="10.0" GridPane.rowIndex="7">
+            <HBox spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                <children>
-                  <Label prefHeight="24.0" prefWidth="90.0" text="%last_update" />
-                  <DatePicker fx:id="cust_last_update" disable="true" promptText="mm/dd/yyyy" />
+                  <Label prefHeight="24.0" prefWidth="90.0" text="%Country" />
+                  <ComboBox fx:id="cust_country_names" onAction="#populateDivisionComboBox" prefWidth="150.0" />
+               </children>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+            </HBox>
+            <HBox spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+               <children>
+                  <Label prefHeight="24.0" prefWidth="90.0" text="%Division" />
+                  <ComboBox fx:id="cust_division_names" prefWidth="150.0" />
+               </children>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+            </HBox>
+            <HBox alignment="TOP_RIGHT" GridPane.rowIndex="6">
+               <children>
+                  <ComboBox fx:id="create_hh" disable="true" promptText="%hour" />
+                  <ComboBox fx:id="create_mm" disable="true" promptText="%minute" />
+                  <ComboBox fx:id="create_ampm" disable="true" promptText="am/pm" />
+               </children>
+               <padding>
+                  <Insets right="25.0" />
+               </padding>
+            </HBox>
+            <HBox spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="7">
+               <children>
+                  <Label prefHeight="24.0" prefWidth="90.0" text="%Last_update_by" />
+                  <TextField fx:id="cust_last_update_by" disable="true" />
                </children>
                <padding>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -90,7 +136,7 @@
                   <ButtonBar>
                      <buttons>
                         <Button fx:id="cust_add_update" mnemonicParsing="false" onMouseClicked="#save" text="%Add" />
-                        <Button fx:id="cancel" layoutX="436.0" layoutY="13.0" mnemonicParsing="false" onMouseClicked="#cancel" text="%cancel" />
+                        <Button fx:id="cancel" layoutX="436.0" layoutY="13.0" mnemonicParsing="false" onMouseClicked="#cancel" text="%Cancel" />
                      </buttons>
                      <padding>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -98,54 +144,9 @@
                   </ButtonBar>
                </children>
             </HBox>
-            <HBox spacing="10.0" GridPane.rowIndex="1">
-               <children>
-                  <Label prefHeight="24.0" prefWidth="90.0" text="%id" />
-                  <TextField fx:id="cust_id" disable="true" editable="false" />
-               </children>
-               <padding>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-               </padding>
-            </HBox>
-            <HBox spacing="10.0" GridPane.rowIndex="3">
-               <children>
-                  <Label prefHeight="24.0" prefWidth="90.0" text="%address" />
-                  <TextField fx:id="cust_address" />
-               </children>
-               <padding>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-               </padding>
-            </HBox>
-            <HBox spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
-               <children>
-                  <Label prefHeight="24.0" prefWidth="90.0" text="%country" />
-                  <ComboBox fx:id="cust_country_names" onAction="#populateDivisionComboBox" prefWidth="150.0" />
-               </children>
-               <padding>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-               </padding>
-            </HBox>
-            <HBox spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
-               <children>
-                  <Label prefHeight="24.0" prefWidth="90.0" text="%phone" />
-                  <TextField fx:id="cust_phone" />
-               </children>
-               <padding>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-               </padding>
-            </HBox>
-            <HBox spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
-               <children>
-                  <Label prefHeight="24.0" prefWidth="90.0" text="%division" />
-                  <ComboBox fx:id="cust_division_names" prefWidth="150.0" />
-               </children>
-               <padding>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-               </padding>
-            </HBox>
             <HBox spacing="10.0" GridPane.rowIndex="5">
                <children>
-                  <Label prefHeight="24.0" prefWidth="90.0" text="%create_date" />
+                  <Label prefHeight="24.0" prefWidth="90.0" text="%Created" />
                   <DatePicker fx:id="cust_create_date" disable="true" promptText="mm/dd/yyyy" />
                </children>
                <padding>
@@ -154,7 +155,7 @@
             </HBox>
             <HBox spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
                <children>
-                  <Label prefHeight="24.0" prefWidth="90.0" text="%created_by" />
+                  <Label prefHeight="24.0" prefWidth="90.0" text="%Created_by" />
                   <TextField fx:id="cust_created_by" disable="true" />
                </children>
                <padding>
@@ -171,14 +172,13 @@
                   <Insets right="25.0" />
                </padding>
             </HBox>
-            <HBox alignment="TOP_RIGHT" GridPane.rowIndex="6">
+            <HBox spacing="10.0" GridPane.rowIndex="7">
                <children>
-                  <ComboBox fx:id="create_hh" disable="true" promptText="%hour" />
-                  <ComboBox fx:id="create_mm" disable="true" promptText="%minute" />
-                  <ComboBox fx:id="create_ampm" disable="true" promptText="am/pm" />
+                  <Label prefHeight="24.0" prefWidth="90.0" text="%Last_update" />
+                  <DatePicker fx:id="cust_last_update" disable="true" promptText="mm/dd/yyyy" />
                </children>
                <padding>
-                  <Insets right="25.0" />
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </padding>
             </HBox>
          </children>

@@ -3,20 +3,37 @@ package utils;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
+/**
+ * Opens up a connection to the MySQL database.
+ * Author: Mario Silvestri III
+ */
 public class DBConnection {
-
-    //JDBC URL
+    /**
+     * URL to MySQL Database
+     */
     private static final String jdbcURL = "jdbc:mysql://wgudb.ucertify.com/WJ05qGs";
+    /**
+     * Name of MySQL JDBC driver
+     */
     private static final String mysqlJDBC = "com.mysql.cj.jdbc.Driver";
 
-    // JDBC Login Credentials
+    /**
+     * MySQL database username
+     */
     private static final String username = "U05qGs";
+    /**
+     * MySQL database password
+     */
     private static final String password = "53688579503";
 
-    // JDBC Connection Pointer
+    /**
+     * MySQL JDBC Connection object
+     */
     private static Connection connection;
 
-    // Open Connection
+    /**
+     * Opens a new MySQL JDBC connection to the database
+     */
     public static void openConnection() {
         try { Class.forName(mysqlJDBC);
             connection = DriverManager.getConnection(jdbcURL, username, password);
@@ -26,11 +43,17 @@ public class DBConnection {
         }
     }
 
+    /**
+     * Gets the open MySQL JDBC database connection
+     * @return Connection object of the open MySQL JDBC database connection
+     */
     public static Connection getConnection() {
         return connection;
     }
 
-    // End Connection
+    /**
+     * Closes the MySQL JDBC database connection
+     */
     public static void closeConnection() {
         try { connection.close();
         } catch (Exception e) {

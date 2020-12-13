@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="737.0" prefWidth="672.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view_controller.ReportController">
+   <children>
+      <VBox layoutX="323.0" layoutY="249.0" prefHeight="737.0" prefWidth="745.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <HBox prefHeight="50.0" prefWidth="671.0">
+               <children>
+                  <HBox alignment="CENTER_LEFT" prefWidth="400.0">
+                     <children>
+                        <Label text="%Customer_Appointments_by_Type_and_Month">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                     <HBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </HBox.margin>
+                  </HBox>
+               </children>
+            </HBox>
+            <HBox>
+               <children>
+                  <TextArea fx:id="appointment_type" editable="false" focusTraversable="false" />
+                  <TextArea fx:id="appointment_month" editable="false" focusTraversable="false" layoutX="10.0" layoutY="10.0" />
+               </children>
+            </HBox>
+            <HBox layoutX="10.0" layoutY="10.0" prefHeight="50.0">
+               <children>
+                  <HBox alignment="CENTER_LEFT" prefWidth="400.0">
+                     <children>
+                        <Label text="%Schedule_by_Contact">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                     <HBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </HBox.margin>
+                  </HBox>
+               </children>
+            </HBox>
+            <TextArea fx:id="contacts" editable="false" focusTraversable="false" layoutX="10.0" layoutY="110.0" prefHeight="200.0" prefWidth="200.0" />
+            <HBox layoutX="10.0" layoutY="310.0" prefHeight="50.0">
+               <children>
+                  <HBox alignment="CENTER_LEFT" prefWidth="400.0">
+                     <children>
+                        <Label text="%Session_Activity_Log">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                     <HBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </HBox.margin>
+                  </HBox>
+               </children>
+            </HBox>
+            <TextArea fx:id="activity" editable="false" focusTraversable="false" layoutX="10.0" layoutY="410.0" prefHeight="200.0" prefWidth="200.0" />
+            <HBox prefHeight="43.0" prefWidth="745.0">
+               <children>
+                  <ButtonBar>
+                    <buttons>
+                      <Button fx:id="exit" mnemonicParsing="false" onAction="#exit" text="%Exit" />
+                    </buttons>
+                  </ButtonBar>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

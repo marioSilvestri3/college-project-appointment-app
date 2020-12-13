@@ -7,8 +7,15 @@ import utils.DBQuery;
 
 import java.sql.ResultSet;
 
+/**
+ * The DAO object for interacting with Division data in the MySQL database.
+ * Author: Mario Silvestri III
+ */
 public class DBDivision {
-
+    /**
+     * Get all division data from the MySQL database.
+     * @return an FXCollections ObservableList of Division objects.
+     */
     public static ObservableList<Division> getDivisions() {
         ObservableList<Division> divisions = FXCollections.observableArrayList();
         try {

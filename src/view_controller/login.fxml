@@ -25,7 +25,7 @@
          <children>
             <VBox>
                <children>
-                  <Label text="%username" />
+                  <Label text="%Username" />
                   <TextField fx:id="username" text="test">
                      <VBox.margin>
                         <Insets />
@@ -34,11 +34,11 @@
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </padding>
                   </TextField>
-                  <Label text="%password" />
+                  <Label text="%Password" />
                   <TextField fx:id="password" text="test" />
                   <HBox>
                      <children>
-                        <Button fx:id="login" mnemonicParsing="false" onMouseClicked="#login" text="%login">
+                        <Button fx:id="login" mnemonicParsing="false" onMouseClicked="#login" text="%Login">
                            <HBox.margin>
                               <Insets />
                            </HBox.margin>
@@ -62,7 +62,7 @@
                <children>
                   <VBox prefHeight="32.0" prefWidth="335.0">
                      <children>
-                        <Label fx:id="locale_text" text="%locale" wrapText="true" />
+                        <Label fx:id="locale_text" text="%Your_time_zone_is:" wrapText="true" />
                      </children>
                   </VBox>
                </children>

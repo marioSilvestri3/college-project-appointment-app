@@ -10,9 +10,16 @@ import java.sql.ResultSet;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
-
+/**
+ * The DAO object for interacting with Customer data in the MySQL database.
+ * Author: Mario Silvestri III
+ */
 public class DBCustomer {
 
+    /**
+     * Get all customer data from the MySQL database.
+     * @return an FXCollections ObservableList of Customer objects.
+     */
     public static ObservableList<Customer> getCustomers() {
         ObservableList<Customer> customers = FXCollections.observableArrayList();
         try {
@@ -26,8 +33,8 @@ public class DBCustomer {
                 String postalCode = rs.getString("Postal_Code");
                 String phone = rs.getString("Phone");
                 LocalDateTime createDate = rs.getTimestamp("Create_Date").toLocalDateTime();
-                String createBy = rs.getString("Created_By");
-                LocalDateTime lastUpdate = rs.getTimestamp("Last_Update").toLocalDateTime();
+                String createBy = rs.getString("Created_by");
+                LocalDateTime lastUpdate = rs.getTimestamp("Last_update").toLocalDateTime();
                 String lastUpdateBy = rs.getString("Last_Updated_By");
                 int divisionID = rs.getInt("Division_ID");
 
@@ -39,49 +46,75 @@ public class DBCustomer {
         return customers;
     }
 
-    public static void addCustomer(Customer customer) {
+    /**
+     * Adds a customer into the MySQL customer table.
+     * @param c The customer to add.
+     */
+    public static void addCustomer(Customer c) {
         try {
             String sql = "INSERT INTO customers(" +
                     "Customer_Name, Address, Postal_Code, Phone, Create_Date," +
-                    " Created_By, Last_Update, Last_Updated_By, Division_ID) values( ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                    " Created_By, Last_Update, Last_Updated_By, Division_ID) values(?, ?, ?, ?, ?, ?, ?, ?, ?)";
             DBQuery.setPreparedStatement(sql);
-            PreparedStatement preparedStatement = DBQuery.getPreparedStatement();
-            preparedStatement.setString(1, customer.getCountryName());
-            preparedStatement.setString(2, customer.getAddress());
-            preparedStatement.setString(3, customer.getPostalCode());
-            preparedStatement.setString(4, customer.getPhone());
-            preparedStatement.setTimestamp(5, Timestamp.valueOf(customer.getCreateDate()));
-            preparedStatement.setString(6, customer.getCreateBy());
-            preparedStatement.setTimestamp(7, Timestamp.valueOf(customer.getLastUpdate()));
-            preparedStatement.setString(8, customer.getLastUpdateBy());
-            preparedStatement.setInt(9, customer.getDivisionID());
-            preparedStatement.execute();
+            PreparedStatement ps = DBQuery.getPreparedStatement();
+            ps.setString(1, c.getName());
+            ps.setString(2, c.getAddress());
+            ps.setString(3, c.getPostal());
+            ps.setString(4, c.getPhone());
+            ps.setTimestamp(5, Timestamp.valueOf(c.getCreateDate()));
+            ps.setString(6, c.getCreateBy());
+            ps.setTimestamp(7, Timestamp.valueOf(c.getLastUpdate()));
+            ps.setString(8, c.getLastUpdateBy());
+            ps.setInt(9, c.getDivisionID());
+            ps.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public static void updateCustomer(Customer customer) {
+    /**
+     * Updates a customer in the MySQL customer table.
+     * @param c The customer to update.
+     */
+    public static void updateCustomer(Customer c) {
         try {
             String sql = "UPDATE customers SET Customer_Name = ?, Address = ?, Postal_Code = ?, Phone = ?, Last_Update = ?, Last_Updated_By = ?, Division_ID = ? WHERE Customer_ID = ?";
             DBQuery.setPreparedStatement(sql);
-            PreparedStatement preparedStatement = DBQuery.getPreparedStatement();
-            preparedStatement.setString(1, customer.getName());
-            preparedStatement.setString(2, customer.getAddress());
-            preparedStatement.setString(3, customer.getPostalCode());
-            preparedStatement.setString(4, customer.getPhone());
-            preparedStatement.setTimestamp(5, Timestamp.valueOf(customer.getLastUpdate()));
-            preparedStatement.setString(6, customer.getLastUpdateBy());
-            preparedStatement.setInt(7, customer.getDivisionID());
-            preparedStatement.setInt(8, customer.getCustomerID());
-            preparedStatement.executeUpdate();
+            PreparedStatement ps = DBQuery.getPreparedStatement();
+            ps.setString(1, c.getName());
+            ps.setString(2, c.getAddress());
+            ps.setString(3, c.getPostal());
+            ps.setString(4, c.getPhone());
+            ps.setTimestamp(5, Timestamp.valueOf(c.getLastUpdate()));
+            ps.setString(6, c.getLastUpdateBy());
+            ps.setInt(7, c.getDivisionID());
+            ps.setInt(8, c.getID());
+            ps.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public static void deleteCustomer(Customer customer) {}
+    /**
+     * Deletes a customer from the MySQL database.
+     * @param c The customer to delete.
+     */
+    public static void deleteCustomer(Customer c) {
+        try {
+            String sql = "DELETE FROM customers WHERE Customer_ID = ?";
+            DBQuery.setPreparedStatement(sql);
+            PreparedStatement ps = DBQuery.getPreparedStatement();
+            ps.setInt(1, c.getID());
+            ps.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
+    /**
+     * Gets the next available unique customer ID from the MySQL database.
+     * @return String value of the next customer ID.
+     */
     public static String getNextAutoID() {
         try {
             String sql = "SELECT AUTO_INCREMENT FROM INFORMATION_SCHEMA.TABLES " +

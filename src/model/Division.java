@@ -4,12 +4,16 @@ import dao.DBDivision;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+/**
+ * The class for storing division data (database records).
+ * Author: Mario Silvestri III
+ */
 public class Division {
 
+    private static final ObservableList<Division> divisions = DBDivision.getDivisions();
     private final int divisionID;
     private final String divisionName;
     private final int countryID;
-    private static final ObservableList<Division> divisions = DBDivision.getDivisions();
 
     public Division(int divisionID, String divisionName, int countryID) {
         this.divisionID = divisionID;
@@ -30,16 +34,16 @@ public class Division {
         return null;
     }
 
-    public int getDivisionID() {
-        return divisionID;
-    }
-
     public static int getDivisionID(String divisionName) {
         for (Division division : DBDivision.getDivisions()) {
             if (division.getDivisionName().equals(divisionName)) {
                 return division.getDivisionID();
             }
         } return 0;
+    }
+
+    public int getDivisionID() {
+        return divisionID;
     }
 
     public String getDivisionName() {

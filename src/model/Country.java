@@ -5,6 +5,10 @@ import dao.DBDivision;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+/**
+ * The class for storing country records.
+ * Author: Mario Silvestri III
+ */
 public class Country {
     private final int countryID;
     private final String countryName;
@@ -16,6 +20,15 @@ public class Country {
 
     public static ObservableList<Country> getCountries() {
         return DBCountry.getCountries();
+    }
+
+    public static Country getCountry(int countryID) {
+        for (Country country : Country.getCountries()) {
+            if (country.getCountryID() == countryID) {
+                return country;
+            }
+        }
+        return null;
     }
 
     public String getCountryName() {
@@ -33,15 +46,6 @@ public class Country {
                 associatedDivisions.add(division);
             }
         } return associatedDivisions;
-    }
-
-    public static Country getCountry(int countryID) {
-        for (Country country : Country.getCountries()) {
-            if (country.getCountryID() == countryID) {
-                return country;
-            }
-        }
-        return null;
     }
 
     @Override

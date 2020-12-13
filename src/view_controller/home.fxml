@@ -4,48 +4,83 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<Pane prefHeight="551.0" prefWidth="1237.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view_controller.HomeController">
+<Pane prefHeight="551.0" prefWidth="1104.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view_controller.HomeController">
    <children>
-      <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="571.0" prefWidth="1237.0">
+      <VBox prefHeight="551.0" prefWidth="1104.0">
          <children>
-            <Label text="Appointments">
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </Label>
-            <TableView fx:id="appt_table" prefHeight="200.0" prefWidth="1071.0">
-              <columns>
-                <TableColumn fx:id="appt_id" prefWidth="29.666626930236816" text="ID" />
-                <TableColumn fx:id="appt_title" prefWidth="78.33331680297852" text="Title" />
-                  <TableColumn fx:id="appt_description" prefWidth="115.66669464111328" text="Description" />
-                  <TableColumn fx:id="appt_location" prefWidth="82.33329772949219" text="Location" />
-                  <TableColumn fx:id="appt_type" prefWidth="60.666748046875" text="Type" />
-                  <TableColumn fx:id="appt_start" prefWidth="141.33334350585938" text="Start" />
-                  <TableColumn fx:id="appt_end" prefWidth="140.666748046875" text="End" />
-                  <TableColumn fx:id="appt_created" minWidth="0.0" prefWidth="69.3333740234375" text="Created" />
-                  <TableColumn fx:id="appt_created_by" minWidth="0.0" prefWidth="69.0" text="Created By" />
-                  <TableColumn fx:id="appt_last_update" prefWidth="130.6666259765625" text="Last Update" />
-                  <TableColumn fx:id="appt_last_update_by" prefWidth="92.0" text="Last Update By" />
-                  <TableColumn fx:id="appt_customer_id" prefWidth="77.33331298828125" text="Customer ID" />
-                  <TableColumn fx:id="appt_user_id" prefWidth="52.3333740234375" text="User ID" />
-                  <TableColumn fx:id="appt_contact_id" prefWidth="69.3333740234375" text="Contact ID" />
-              </columns>
+            <HBox prefHeight="25.0" prefWidth="1113.0">
+               <children>
+                  <HBox>
+                     <children>
+                        <Label prefHeight="25.0" prefWidth="148.0" text="%Appointment">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_RIGHT" prefHeight="25.0" prefWidth="988.0">
+                     <children>
+                        <Label text="Filter: ">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <RadioButton fx:id="filter_none" mnemonicParsing="false" onAction="#noFilter" selected="true" text="%None">
+                           <HBox.margin>
+                              <Insets left="5.0" right="5.0" />
+                           </HBox.margin>
+                           <toggleGroup>
+                              <ToggleGroup fx:id="filter" />
+                           </toggleGroup>
+                        </RadioButton>
+                        <RadioButton fx:id="filter_week" layoutX="10.0" layoutY="14.0" mnemonicParsing="false" onAction="#weeklyFilter" text="%Week" toggleGroup="$filter">
+                           <HBox.margin>
+                              <Insets left="5.0" right="5.0" />
+                           </HBox.margin>
+                        </RadioButton>
+                        <RadioButton fx:id="filter_month" layoutX="97.0" layoutY="14.0" mnemonicParsing="false" onAction="#monthlyFilter" text="%Month" toggleGroup="$filter">
+                           <HBox.margin>
+                              <Insets left="5.0" right="5.0" />
+                           </HBox.margin>
+                        </RadioButton>
+                     </children>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </HBox>
+               </children>
+            </HBox>
+            <TableView fx:id="appt_table" layoutX="20.0" layoutY="311.0" prefHeight="200.0" prefWidth="1071.0">
+               <columns>
+                  <TableColumn fx:id="appt_id" prefWidth="30.666626930236816" text="ID" />
+                  <TableColumn fx:id="appt_title" prefWidth="105.33331298828125" text="%Title" />
+                  <TableColumn fx:id="appt_description" prefWidth="164.00001525878906" text="%Description" />
+                  <TableColumn fx:id="appt_location" minWidth="0.0" prefWidth="107.3333740234375" text="%Location" />
+                  <TableColumn fx:id="appt_contact" prefWidth="103.33322143554688" text="%Contact" />
+                  <TableColumn fx:id="appt_type" prefWidth="74.6666259765625" text="%Type" />
+                  <TableColumn fx:id="appt_start" prefWidth="134.6666259765625" text="%Start" />
+                  <TableColumn fx:id="appt_end" maxWidth="176.0" minWidth="-1.0" prefWidth="156.0" text="%End" />
+                  <TableColumn fx:id="appt_customer_id" maxWidth="164.6666259765625" minWidth="-1.0" prefWidth="75.333251953125" text="%Customer_ID" />
+                  <TableColumn fx:id="appt_customer_name" maxWidth="172.00006103515625" minWidth="-1.0" prefWidth="126.66680908203125" text="%Customer Name" />
+               </columns>
             </TableView>
             <HBox alignment="CENTER_RIGHT">
                <children>
                   <ButtonBar prefHeight="40.0" prefWidth="200.0">
                     <buttons>
-                      <Button fx:id="add_appt" mnemonicParsing="false" onMouseClicked="#addAppointment" text="Add" />
-                        <Button fx:id="update_appt" layoutX="983.0" layoutY="17.0" mnemonicParsing="false" onMouseClicked="#updateAppointment" text="Update" />
-                        <Button fx:id="delete_appt" layoutX="983.0" layoutY="17.0" mnemonicParsing="false" onMouseClicked="#deleteAppointment" text="Delete" />
+                      <Button fx:id="add_appt" mnemonicParsing="false" onMouseClicked="#addAppointment" text="%Add" />
+                        <Button fx:id="update_appt" layoutX="983.0" layoutY="17.0" mnemonicParsing="false" onMouseClicked="#updateAppointment" text="%Update" />
+                        <Button fx:id="delete_appt" layoutX="983.0" layoutY="17.0" mnemonicParsing="false" onMouseClicked="#deleteAppointment" text="%Delete" />
                     </buttons>
                   </ButtonBar>
                </children>
@@ -53,45 +88,67 @@
                   <Insets right="5.0" />
                </VBox.margin>
             </HBox>
-            <Label layoutX="15.0" layoutY="15.0" text="Customers">
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </Label>
+            <HBox>
+               <children>
+                  <Label text="%Customers">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
             <TableView fx:id="cust_table" layoutX="15.0" layoutY="41.0" prefHeight="200.0" prefWidth="1071.0">
                <columns>
                   <TableColumn fx:id="cust_id" prefWidth="30.666626930236816" text="ID" />
-                  <TableColumn fx:id="cust_name" prefWidth="152.66669082641602" text="Name" />
-                  <TableColumn fx:id="cust_address" prefWidth="174.66656494140625" text="Address" />
-                  <TableColumn fx:id="cust_postal" minWidth="0.0" prefWidth="124.0" text="Postal" />
-                  <TableColumn fx:id="cust_phone" prefWidth="127.333251953125" text="Phone" />
-                  <TableColumn fx:id="cust_created" prefWidth="174.6666259765625" text="Created" />
-                  <TableColumn fx:id="cust_created_by" prefWidth="103.3333740234375" text="Created By" />
-                  <TableColumn fx:id="cust_last_update" prefWidth="154.0" text="Last Update" />
-                  <TableColumn fx:id="cust_last_update_by" prefWidth="100.0" text="Last Update By" />
-                  <TableColumn fx:id="cust_division_id" prefWidth="74.3333740234375" text="Division ID" />
+                  <TableColumn fx:id="cust_name" prefWidth="177.33330917358398" text="%Name" />
+                  <TableColumn fx:id="cust_address" prefWidth="232.66664123535156" text="%Address" />
+                  <TableColumn fx:id="cust_postal" minWidth="0.0" prefWidth="52.6666259765625" text="%Postal" />
+                  <TableColumn fx:id="cust_phone" prefWidth="160.00009155273438" text="%Phone" />
+                  <TableColumn fx:id="cust_division_id" prefWidth="70.6666259765625" text="%Division ID" />
+                  <TableColumn fx:id="cust_division_name" prefWidth="150.666748046875" text="%Division Name" />
+                  <TableColumn fx:id="cust_country_id" maxWidth="237.3333740234375" minWidth="-1.0" prefWidth="70.0" text="%Country ID" />
+                  <TableColumn fx:id="cust_country_name" maxWidth="298.66668701171875" minWidth="-1.0" prefWidth="136.00006103515625" text="%Country Name" />
                </columns>
             </TableView>
-            <HBox alignment="CENTER_RIGHT">
+            <HBox alignment="CENTER_RIGHT" prefHeight="40.0" prefWidth="1058.0">
                <children>
-                  <HBox alignment="CENTER_LEFT">
+                  <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="273.0">
                      <HBox.margin>
-                        <Insets right="50.0" />
+                        <Insets right="25.0" />
                      </HBox.margin>
                      <children>
-                        <Button fx:id="exit" mnemonicParsing="false" onAction="#exitApplication" onMouseClicked="#addCustomer" prefHeight="25.0" prefWidth="947.0" text="Exit Application">
+                        <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="147.0">
+                           <children>
+                              <ButtonBar prefHeight="40.0" prefWidth="118.0">
+                                 <HBox.margin>
+                                    <Insets left="5.0" />
+                                 </HBox.margin>
+                                 <buttons>
+                                    <Button fx:id="exit" mnemonicParsing="false" onAction="#exitApplication" onMouseClicked="#addCustomer" prefHeight="25.0" prefWidth="947.0" text="%Exit Application" />
+                                 </buttons>
+                              </ButtonBar>
+                           </children>
+                        </HBox>
+                        <ButtonBar>
                            <HBox.margin>
-                              <Insets left="5.0" />
+                              <Insets left="10.0" />
                            </HBox.margin>
-                        </Button>
+                           <buttons>
+                              <Button fx:id="reports" layoutX="19.0" layoutY="17.0" mnemonicParsing="false" onAction="#openReports" onMouseClicked="#addCustomer" text="%Reports">
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                              </Button>
+                           </buttons>
+                        </ButtonBar>
                      </children>
                   </HBox>
-                  <Pane prefHeight="40.0" prefWidth="1616.0" />
+                  <Pane prefHeight="40.0" prefWidth="523.0" />
                   <ButtonBar prefHeight="40.0" prefWidth="200.0">
                      <buttons>
-                        <Button fx:id="cust_add" mnemonicParsing="false" onAction="#addCustomer" onMouseClicked="#addCustomer" text="Add" />
+                        <Button fx:id="cust_add" mnemonicParsing="false" onAction="#addCustomer" onMouseClicked="#addCustomer" text="%Add" />
                         <Button fx:id="cust_update" layoutX="983.0" layoutY="17.0" mnemonicParsing="false" onMouseClicked="#updateCustomer" text="Update" />
-                        <Button fx:id="cust_delete" layoutX="983.0" layoutY="17.0" mnemonicParsing="false" onMouseClicked="#deleteCustomer" text="Delete" />
+                        <Button fx:id="cust_delete" layoutX="983.0" layoutY="17.0" mnemonicParsing="false" onMouseClicked="#deleteCustomer" text="%Delete" />
                      </buttons>
                      <HBox.margin>
                         <Insets right="5.0" />

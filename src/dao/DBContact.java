@@ -7,9 +7,16 @@ import utils.DBQuery;
 
 import java.sql.ResultSet;
 
-
+/**
+ * The DAO object for interacting with Contact data in the MySQL database.
+ * Author: Mario Silvestri III
+ */
 public class DBContact {
 
+    /**
+     * Get all contact data from the MySQL database.
+     * @return an FXCollections ObservableList of Contact objects.
+     */
     public static ObservableList<Contact> getContacts() {
         ObservableList<Contact> contacts = FXCollections.observableArrayList();
         try {
